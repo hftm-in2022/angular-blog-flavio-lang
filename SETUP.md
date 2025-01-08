@@ -109,4 +109,10 @@ npx --no-install commitlint --edit "$1"
 
 ```
 
-When commiting changes we should now be notified about bad commit formatting
+When commiting changes we should now be notified about bad commit formatting.
+
+## 3. Automatic Azure deployment
+
+Setting up azure deployment is very easy thanks to the Azure Tools Extension for VS Code. The Extension allows us to create a new static web app and generates a GitHub Action to go with it.
+
+[Short Step-by-step Guide on Moodle](https://moodle.hftm.ch/mod/page/view.php?id=309425)
