@@ -116,3 +116,7 @@ When commiting changes we should now be notified about bad commit formatting.
 Setting up azure deployment is very easy thanks to the Azure Tools Extension for VS Code. The Extension allows us to create a new static web app and generates a GitHub Action to go with it.
 
 [Short Step-by-step Guide on Moodle](https://moodle.hftm.ch/mod/page/view.php?id=309425)
+
+## 4. CI/CD Pipelines
+
+CI/CD Pipelines were created according to [this](https://www.youtube.com/watch?v=1vqJ1_AAcUg) great tutorial.
