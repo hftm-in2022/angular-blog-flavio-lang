@@ -30,7 +30,6 @@ jobs:
 
     - name: Run tests
       run: npm run test:ci
-    - name: Build
 
     - name: Build
       run: npm run build
