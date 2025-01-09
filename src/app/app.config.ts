@@ -5,17 +5,13 @@ import {
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
-import {
-  HTTP_INTERCEPTORS,
-  provideHttpClient,
-  withInterceptors,
-} from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { provideAuth } from 'angular-auth-oidc-client';
 import { routes } from './app.routes';
+import { authConfig } from './auth/auth.config';
 import { GlobalErrorHandler } from './core/handlers/global-error.handler';
 import { loggingInterceptor } from './core/interceptors/logging.interceptor';
-import { authConfig } from './auth/auth.config';
-import { AuthInterceptor, provideAuth } from 'angular-auth-oidc-client';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -23,10 +19,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideHttpClient(withInterceptors([loggingInterceptor])),
     provideAuth(authConfig),
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-    },
     provideAnimationsAsync(),
     {
       provide: ErrorHandler,

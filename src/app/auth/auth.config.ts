@@ -12,7 +12,6 @@ export const authConfig: PassedInitialConfig = {
     silentRenew: true,
     silentRenewUrl: window.location.origin + '/silent-renew.html',
     renewTimeBeforeTokenExpiresInSeconds: 10,
-    secureRoutes: [environment.apiUrl],
   },
 };
 
