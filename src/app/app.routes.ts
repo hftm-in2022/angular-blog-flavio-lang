@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { blogDetailResolver } from './core/resolvers/blog-detail/blog-detail.resolver';
 import { blogOverviewResolver } from './core/resolvers/blog-overview/blog-overview.resolver';
+import { ErrorComponent } from './components/error/error.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/blogs', pathMatch: 'full' },
@@ -23,5 +24,10 @@ export const routes: Routes = [
     resolve: {
       data: blogDetailResolver,
     },
+  },
+
+  {
+    path: '**',
+    component: ErrorComponent,
   },
 ];
