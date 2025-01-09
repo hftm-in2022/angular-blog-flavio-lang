@@ -8,7 +8,7 @@ export const routes: Routes = [
   {
     path: 'blogs',
     loadComponent: () =>
-      import('./components/blog-list/blog-list.component').then(
+      import('./features/blog-list/blog-list.component').then(
         (m) => m.BlogListComponent,
       ), // Lazy loading for standalone components
     resolve: {
@@ -18,7 +18,7 @@ export const routes: Routes = [
   {
     path: 'blogs/:id',
     loadComponent: () =>
-      import('./components/blog-detail/blog-detail.component').then(
+      import('./features/blog-detail/blog-detail.component').then(
         (m) => m.BlogDetailComponent,
       ), // Lazy loading for standalone components
     resolve: {
