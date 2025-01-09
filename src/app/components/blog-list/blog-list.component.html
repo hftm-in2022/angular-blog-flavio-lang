@@ -1,17 +1,21 @@
-@if (blogEntries()) {
-  <div class="container">
-    @for (entry of blogEntries(); track $index) {
-      <app-blog-card
-        class="blog-card"
-        [entry]="entry"
-        (selectBlog)="goToBlog($event)"
-      ></app-blog-card>
-    }
-  </div>
-} @else {
-  <div class="container">
-    <div class="alert alert-warning" role="alert">
-      Keine Blogeinträge gefunden.
+@if (!blogState().loading) {
+  @if (blogState().blogs) {
+    <div class="container">
+      @for (entry of blogState().blogs?.data; track $index) {
+        <app-blog-card
+          class="blog-card"
+          [entry]="entry"
+          (selectBlog)="goToBlog($event)"
+        ></app-blog-card>
+      }
     </div>
-  </div>
+  } @else {
+    <div class="container">
+      <div class="alert alert-warning" role="alert">
+        Keine Blogeinträge gefunden.
+      </div>
+    </div>
+  }
+} @else {
+  <mat-spinner></mat-spinner>
 }

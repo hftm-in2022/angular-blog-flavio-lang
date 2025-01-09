@@ -1,12 +1,17 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit, signal, WritableSignal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  WritableSignal,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
-import { ActivatedRoute } from '@angular/router';
-import { BlogDetailPage } from 'src/app/core/schemas/blogs.schema';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { BlogSelector } from 'src/app/state/blog.selector';
+import { BlogState } from 'src/app/state/blog.state';
 
 @Component({
   selector: 'app-blog-detail',
@@ -17,29 +22,20 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     MatButtonModule,
     MatIconModule,
     MatDividerModule,
+    MatProgressSpinnerModule,
   ],
   templateUrl: './blog-detail.component.html',
   styleUrl: './blog-detail.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BlogDetailComponent implements OnInit {
-  blog: WritableSignal<BlogDetailPage | undefined> = signal(undefined);
+export class BlogDetailComponent {
+  blogState: WritableSignal<BlogState>;
 
   constructor(
-    private route: ActivatedRoute,
     private snackBar: MatSnackBar,
-  ) {}
-
-  ngOnInit(): void {
-    this.loadBlog();
-  }
-
-  loadBlog() {
-    const data = this.route.snapshot.data['data'];
-    if (data) {
-      this.blog.set(data);
-    } else {
-      throw new Error('Blog konnte nicht gefunden werden!');
-    }
+    private blogSelector: BlogSelector,
+  ) {
+    this.blogState = this.blogSelector.getState();
   }
 
   onLikeClick() {
