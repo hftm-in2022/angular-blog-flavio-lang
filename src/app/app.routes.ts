@@ -27,6 +27,14 @@ export const routes: Routes = [
   },
 
   {
+    path: 'create',
+    loadComponent: () =>
+      import('./features/add-blog/add-blog.component').then(
+        (m) => m.AddBlogComponent,
+      ), // Lazy loading for standalone components
+  },
+
+  {
     path: '**',
     component: ErrorComponent,
   },
