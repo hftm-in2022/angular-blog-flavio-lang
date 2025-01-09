@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal, WritableSignal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -22,7 +22,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrl: './blog-detail.component.scss',
 })
 export class BlogDetailComponent implements OnInit {
-  data: BlogDetailPage | undefined;
+  blog: WritableSignal<BlogDetailPage | undefined> = signal(undefined);
 
   constructor(
     private route: ActivatedRoute,
@@ -30,7 +30,16 @@ export class BlogDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.data = this.route.snapshot.data['data'] as BlogDetailPage;
+    this.loadBlog();
+  }
+
+  loadBlog() {
+    const data = this.route.snapshot.data['data'];
+    if (data) {
+      this.blog.set(data);
+    } else {
+      throw new Error('Blog konnte nicht gefunden werden!');
+    }
   }
 
   onLikeClick() {

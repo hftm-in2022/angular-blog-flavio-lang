@@ -1,6 +1,6 @@
-@if (blogEntries) {
+@if (blogEntries()) {
   <div class="container">
-    @for (entry of blogEntries.data; track $index) {
+    @for (entry of blogEntries(); track $index) {
       <app-blog-card
         class="blog-card"
         [entry]="entry"
