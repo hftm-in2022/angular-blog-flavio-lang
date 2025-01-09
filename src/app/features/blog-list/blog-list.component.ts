@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 import { BlogOverviewEntry } from 'src/app/core/schemas/blogs.schema';
 import { BlogSelector } from 'src/app/state/blog.selector';
 import { BlogState } from 'src/app/state/blog.state';
-import { BlogCardComponent } from '../blog-card/blog-card.component';
+import { BlogCardComponent } from '../../components/blog-card/blog-card.component';
 
 @Component({
   selector: 'app-blog-list',
