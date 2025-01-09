@@ -1,7 +1,11 @@
 @if (blogEntries) {
   <div class="container">
     @for (entry of blogEntries.data; track $index) {
-      <app-blog-card class="blog-card" [entry]="entry"></app-blog-card>
+      <app-blog-card
+        class="blog-card"
+        [entry]="entry"
+        (selectBlog)="goToBlog($event)"
+      ></app-blog-card>
     }
   </div>
 } @else {

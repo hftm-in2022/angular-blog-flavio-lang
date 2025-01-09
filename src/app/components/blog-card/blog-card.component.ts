@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -13,4 +13,11 @@ import { BlogOverviewEntry } from 'src/app/core/schemas/blogs.schema';
 })
 export class BlogCardComponent {
   @Input() entry: BlogOverviewEntry | undefined;
+
+  @Output()
+  selectBlog = new EventEmitter<BlogOverviewEntry>();
+
+  selectBlogEntry(entry: BlogOverviewEntry) {
+    this.selectBlog.emit(entry);
+  }
 }

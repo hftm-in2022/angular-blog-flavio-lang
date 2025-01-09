@@ -1,9 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BlogCardComponent } from '../blog-card/blog-card.component';
-import { BlogOverviewPage } from 'src/app/core/schemas/blogs.schema';
+import {
+  BlogOverviewEntry,
+  BlogOverviewPage,
+} from 'src/app/core/schemas/blogs.schema';
 
 @Component({
   selector: 'app-blog-list',
@@ -15,9 +18,16 @@ import { BlogOverviewPage } from 'src/app/core/schemas/blogs.schema';
 export class BlogListComponent implements OnInit {
   blogEntries: BlogOverviewPage | undefined;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {
     this.blogEntries = this.route.snapshot.data['data'];
+  }
+
+  goToBlog(entry: BlogOverviewEntry) {
+    this.router.navigate(['/blogs', entry.id]);
   }
 }

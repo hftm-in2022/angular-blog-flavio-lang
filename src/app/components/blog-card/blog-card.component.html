@@ -24,7 +24,9 @@
           ><mat-icon>comment</mat-icon>{{ entry.comments }}</span
         >
       </div>
-      <a href="/blogs/{{ entry.id }}" mat-button>Weiterlesen...</a>
+      <button (click)="selectBlogEntry(entry)" mat-button>
+        Weiterlesen...
+      </button>
     </mat-card-actions>
   </mat-card>
 }
