@@ -1,7 +1,53 @@
 @if (data) {
-  <div class="blog-detail">
-    <h1>{{ data.title }}</h1>
-    <p>{{ data.content }}</p>
+  <div class="container">
+    <a href="/blogs" mat-button
+      ><mat-icon>arrow_back</mat-icon> Zurück zur Übersicht</a
+    >
+    <mat-card class="card" appearance="raised">
+      @if (data.headerImageUrl) {
+        <img
+          mat-card-image
+          src="{{ data.headerImageUrl }}"
+          alt="Blog Entry image"
+        />
+      }
+      <mat-card-header>
+        <mat-card-title>{{ data.title }}</mat-card-title>
+        <mat-card-subtitle
+          >{{ data.author }} am
+          {{ data.createdAt | date: "dd.MM.yyyy" }}</mat-card-subtitle
+        >
+      </mat-card-header>
+      <mat-card-content>
+        {{ data.content }}
+      </mat-card-content>
+      <mat-card-actions>
+        <button (click)="onLikeClick()" mat-button>
+          <mat-icon [class.material-icons-outlined]="!data.likedByMe"
+            >thumb_up</mat-icon
+          >
+          {{ data.likes }}
+        </button>
+        <button (click)="onCommentClick()" mat-button>
+          <mat-icon>comment</mat-icon> {{ data.comments.length }}
+        </button>
+      </mat-card-actions>
+    </mat-card>
+    <h6>Kommentare</h6>
+    @if (data.comments.length > 0) {
+      @for (comment of data.comments; track $index) {
+        <div class="comment">
+          <span class="commentTitle"
+            >{{ comment.author }} am
+            {{ comment.createdAt | date: "dd.MM.yyyy" }}</span
+          >
+          <span>{{ comment.content }}</span>
+        </div>
+        <mat-divider />
+      }
+    } @else {
+      <div class="emptyComments">Es gibt noch keine Kommentare...</div>
+    }
   </div>
 } @else {
   <span>Blog Eintrag existiert nicht</span>
