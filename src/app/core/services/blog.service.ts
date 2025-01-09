@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { BlogOverviewPage } from '../schemas/blogs.schema';
+import { BlogDetailPage, BlogOverviewPage } from '../schemas/blogs.schema';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
@@ -20,6 +20,12 @@ export class BlogService {
     return this.apiClient.get<BlogOverviewPage>(
       environment.apiUrl + '/entries',
       { params: queryParams },
+    );
+  }
+
+  getBlog(id: number): Observable<BlogDetailPage> {
+    return this.apiClient.get<BlogDetailPage>(
+      environment.apiUrl + '/entries/' + id,
     );
   }
 }

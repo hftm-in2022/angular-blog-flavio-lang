@@ -1,10 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { EMPTY, Observable } from 'rxjs';
-import { BlogOverviewPage } from 'src/app/schemas/blogs.schema';
-import { BlogService } from 'src/app/services/blog.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BlogCardComponent } from '../blog-card/blog-card.component';
+import {
+  BlogOverviewEntry,
+  BlogOverviewPage,
+} from 'src/app/core/schemas/blogs.schema';
 
 @Component({
   selector: 'app-blog-list',
@@ -14,11 +16,18 @@ import { BlogCardComponent } from '../blog-card/blog-card.component';
   styleUrl: './blog-list.component.scss',
 })
 export class BlogListComponent implements OnInit {
-  blogEntries$: Observable<BlogOverviewPage> = EMPTY;
+  blogEntries: BlogOverviewPage | undefined;
 
-  constructor(private blogService: BlogService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {
-    this.blogEntries$ = this.blogService.getBlogs();
+    this.blogEntries = this.route.snapshot.data['data'];
+  }
+
+  goToBlog(entry: BlogOverviewEntry) {
+    this.router.navigate(['/blogs', entry.id]);
   }
 }

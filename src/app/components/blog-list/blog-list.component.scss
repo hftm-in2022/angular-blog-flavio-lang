@@ -1,24 +1,16 @@
-$gap: 10px;
-$columns: 4;
-
-@mixin grid-item($columns) {
-  flex: 1 1 calc((100% / #{$columns}) - #{$gap});
-  box-sizing: border-box;
-}
-
 .container {
-  width: 100%;
-  justify-content: center;
-  display: flex;
-  flex-wrap: wrap;
-  gap: $gap;
+  display: grid;
+  width: 90dvw;
+  gap: 16px; // Space between cards
+  // grid-template-columns: repeat(
+  //   auto-fill,
+  //   minmax(16rem, 1fr)
+  // ); // Responsive grid with dynamic card sizing
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  justify-content: center; // Center the grid when there’s extra space
 
-  p {
-    @include grid-item($columns);
-    margin: 0;
-    padding: 10px;
-    background-color: lightblue;
-    text-align: center;
-    border: 1px solid #ccc;
+  .blog-card {
+    height: 100%; // Ensures consistent height for all cards
+    box-sizing: border-box; // Include padding and border in size calculations
   }
 }

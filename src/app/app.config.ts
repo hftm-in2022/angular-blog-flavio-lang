@@ -1,21 +1,25 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import {
+  ApplicationConfig,
+  ErrorHandler,
+  provideZoneChangeDetection,
+} from '@angular/core';
 import { provideRouter } from '@angular/router';
 
-import { routes } from './app.routes';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
-import { loggingInterceptor } from './interceptors/logging.interceptor';
+import { routes } from './app.routes';
+import { GlobalErrorHandler } from './core/handlers/global-error.handler';
+import { loggingInterceptor } from './core/interceptors/logging.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([loggingInterceptor])),
     provideAnimationsAsync(),
     {
-      provide: HTTP_INTERCEPTORS,
-      useValue: loggingInterceptor,
-      multi: true,
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandler,
     },
   ],
 };

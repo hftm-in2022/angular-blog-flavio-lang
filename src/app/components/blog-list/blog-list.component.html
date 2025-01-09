@@ -1,5 +1,17 @@
-<div class="container" *ngIf="blogEntries$ | async as blogEntries">
-  @for (entry of blogEntries.data; track $index) {
-    <app-blog-card [entry]="entry"></app-blog-card>
-  }
-</div>
+@if (blogEntries) {
+  <div class="container">
+    @for (entry of blogEntries.data; track $index) {
+      <app-blog-card
+        class="blog-card"
+        [entry]="entry"
+        (selectBlog)="goToBlog($event)"
+      ></app-blog-card>
+    }
+  </div>
+} @else {
+  <div class="container">
+    <div class="alert alert-warning" role="alert">
+      Keine Blogeinträge gefunden.
+    </div>
+  </div>
+}

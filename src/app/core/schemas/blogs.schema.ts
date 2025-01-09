@@ -26,6 +26,31 @@ export const BlogOverviewPageSchema = z.object({
   totalCound: z.number(),
 });
 
+// Schema for a single blog entry on the detail page.
+// Contains all attributes of a blog entry including comments.
+export const BlogDetailPageSchema = z.object({
+  id: z.number(),
+  title: z.string(),
+  content: z.string(),
+  author: z.string(),
+  comments: z.array(
+    z.object({
+      id: z.number(),
+      content: z.string(),
+      author: z.string(),
+      createdAt: z.string(),
+      updatedAt: z.string(),
+    }),
+  ),
+  likes: z.number(),
+  likedByMe: z.boolean(),
+  createdByMe: z.boolean(),
+  createdAt: z.string(),
+  updatedAt: z.string(),
+  headerImageUrl: z.string().optional(),
+});
+
 // Infer TS Types from zod schema
 export type BlogOverviewPage = z.infer<typeof BlogOverviewPageSchema>;
 export type BlogOverviewEntry = z.infer<typeof BlogOverviewEntrySchema>;
+export type BlogDetailPage = z.infer<typeof BlogDetailPageSchema>;
