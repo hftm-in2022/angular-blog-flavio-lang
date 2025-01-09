@@ -1,18 +1,12 @@
-// .container {
-//   display: flex;
-//   flex-direction: row;
-//   flex-wrap: wrap;
-//   justify-content: center;
-//   flex: 1 1 28rem;
-// }
-
 .container {
   display: grid;
+  width: 90dvw;
   gap: 16px; // Space between cards
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(250px, 1fr)
-  ); // Responsive grid with dynamic card sizing
+  // grid-template-columns: repeat(
+  //   auto-fill,
+  //   minmax(16rem, 1fr)
+  // ); // Responsive grid with dynamic card sizing
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
   justify-content: center; // Center the grid when there’s extra space
 
   .blog-card {

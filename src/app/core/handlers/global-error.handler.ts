@@ -14,21 +14,33 @@ export class GlobalErrorHandler implements ErrorHandler {
       this.showHttpError(error);
     } else {
       console.error(error);
-      this.snackBar.open('Ooops, da ist etwas schiefgelaufen 😕');
+      this.snackBar.open(
+        'Ooops, da ist etwas schiefgelaufen 😕',
+        'Schliessen',
+        { duration: 3000 },
+      );
       this.router.navigate(['/']);
     }
   }
 
   showHttpError(error: HttpErrorResponse) {
     if (error.status === 404) {
-      this.snackBar.open('Diese Ressource existiert nicht 😕');
+      this.snackBar.open('Diese Ressource existiert nicht 😕', 'Schliessen', {
+        duration: 3000,
+      });
       this.router.navigate(['/']);
     } else if (error.status === 0) {
       this.snackBar.open(
         'Du bist offline, bitte verbinde dich mit dem Internet 💥',
+        'Schliessen',
+        { duration: 3000 },
       );
     } else {
-      this.snackBar.open('Ooops, da ist etwas schiefgelaufen 😕');
+      this.snackBar.open(
+        'Ooops, da ist etwas schiefgelaufen 😕',
+        'Schliessen',
+        { duration: 3000 },
+      );
     }
   }
 }
