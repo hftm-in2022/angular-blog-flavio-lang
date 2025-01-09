@@ -1,1 +1,8 @@
-<p>blog-detail works!</p>
+@if (data) {
+  <div class="blog-detail">
+    <h1>{{ data.title }}</h1>
+    <p>{{ data.content }}</p>
+  </div>
+} @else {
+  <span>Blog Eintrag existiert nicht</span>
+}
