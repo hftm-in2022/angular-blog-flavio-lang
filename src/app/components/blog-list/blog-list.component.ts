@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { EMPTY, Observable } from 'rxjs';
-import { BlogOverviewPage } from 'src/app/schemas/blogs.schema';
-import { BlogService } from 'src/app/services/blog.service';
+import { BlogOverviewPage } from 'src/app/core/schemas/blogs.schema';
+import { BlogService } from 'src/app/core/services/blog.service';
 import { BlogCardComponent } from '../blog-card/blog-card.component';
 
 @Component({

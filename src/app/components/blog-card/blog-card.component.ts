@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { BlogOverviewEntry } from 'src/app/schemas/blogs.schema';
+import { BlogOverviewEntry } from 'src/app/core/schemas/blogs.schema';
 import { MatCardModule } from '@angular/material/card';
 
 @Component({
