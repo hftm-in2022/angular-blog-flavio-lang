@@ -1,30 +1,38 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { ActivatedRoute, Router } from '@angular/router';
-import { BlogCardComponent } from '../blog-card/blog-card.component';
 import {
-  BlogOverviewEntry,
-  BlogOverviewPage,
-} from 'src/app/core/schemas/blogs.schema';
+  ChangeDetectionStrategy,
+  Component,
+  WritableSignal,
+} from '@angular/core';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { Router } from '@angular/router';
+import { BlogOverviewEntry } from 'src/app/core/schemas/blogs.schema';
+import { BlogSelector } from 'src/app/state/blog.selector';
+import { BlogState } from 'src/app/state/blog.state';
+import { BlogCardComponent } from '../blog-card/blog-card.component';
 
 @Component({
   selector: 'app-blog-list',
   standalone: true,
-  imports: [BlogCardComponent, CommonModule, MatGridListModule],
+  imports: [
+    BlogCardComponent,
+    CommonModule,
+    MatGridListModule,
+    MatProgressSpinnerModule,
+  ],
   templateUrl: './blog-list.component.html',
   styleUrl: './blog-list.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BlogListComponent implements OnInit {
-  blogEntries: BlogOverviewPage | undefined;
+export class BlogListComponent {
+  blogState: WritableSignal<BlogState>;
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
-  ) {}
-
-  ngOnInit(): void {
-    this.blogEntries = this.route.snapshot.data['data'];
+    private blogSelector: BlogSelector,
+  ) {
+    this.blogState = this.blogSelector.getState();
   }
 
   goToBlog(entry: BlogOverviewEntry) {

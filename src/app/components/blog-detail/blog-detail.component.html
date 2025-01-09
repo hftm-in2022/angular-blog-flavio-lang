@@ -1,41 +1,45 @@
-@if (data) {
+@if (!blogState().loading) {
   <div class="container">
     <a href="/blogs" mat-button
       ><mat-icon>arrow_back</mat-icon> Zurück zur Übersicht</a
     >
     <mat-card class="card" appearance="raised">
-      @if (data.headerImageUrl) {
+      @if (blogState().blogDetail!.headerImageUrl) {
         <img
           mat-card-image
-          src="{{ data.headerImageUrl }}"
+          src="{{ blogState().blogDetail!.headerImageUrl }}"
           alt="Blog Entry image"
         />
       }
       <mat-card-header>
-        <mat-card-title>{{ data.title }}</mat-card-title>
+        <mat-card-title>{{ blogState().blogDetail!.title }}</mat-card-title>
         <mat-card-subtitle
-          >{{ data.author }} am
-          {{ data.createdAt | date: "dd.MM.yyyy" }}</mat-card-subtitle
+          >{{ blogState().blogDetail!.author }} am
+          {{
+            blogState().blogDetail!.createdAt | date: "dd.MM.yyyy"
+          }}</mat-card-subtitle
         >
       </mat-card-header>
       <mat-card-content>
-        {{ data.content }}
+        {{ blogState().blogDetail!.content }}
       </mat-card-content>
       <mat-card-actions>
         <button (click)="onLikeClick()" mat-button>
-          <mat-icon [class.material-icons-outlined]="!data.likedByMe"
+          <mat-icon
+            [class.material-icons-outlined]="!blogState().blogDetail!.likedByMe"
             >thumb_up</mat-icon
           >
-          {{ data.likes }}
+          {{ blogState().blogDetail!.likes }}
         </button>
         <button (click)="onCommentClick()" mat-button>
-          <mat-icon>comment</mat-icon> {{ data.comments.length }}
+          <mat-icon>comment</mat-icon>
+          {{ blogState().blogDetail!.comments.length }}
         </button>
       </mat-card-actions>
     </mat-card>
     <h6>Kommentare</h6>
-    @if (data.comments.length > 0) {
-      @for (comment of data.comments; track $index) {
+    @if (blogState().blogDetail!.comments.length > 0) {
+      @for (comment of blogState().blogDetail!.comments; track $index) {
         <div class="comment">
           <span class="commentTitle"
             >{{ comment.author }} am
@@ -50,5 +54,5 @@
     }
   </div>
 } @else {
-  <span>Blog Eintrag existiert nicht</span>
+  <mat-spinner></mat-spinner>
 }
