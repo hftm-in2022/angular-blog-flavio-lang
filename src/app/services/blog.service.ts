@@ -11,10 +11,7 @@ export class BlogService {
   constructor(private apiClient: HttpClient) {}
 
   // Return all blog entries with pagination
-  getBlogs(
-    pageIndex = 0,
-    pageSize = 10,
-  ): Observable<BlogOverviewPage> {
+  getBlogs(pageIndex = 0, pageSize = 10): Observable<BlogOverviewPage> {
     const queryParams = new HttpParams();
 
     queryParams.set('pageSize', pageSize);

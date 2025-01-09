@@ -1,44 +1,4 @@
-<div class="todo-app">
-  <h3>{{ title }}</h3>
-
-  <div class="container todo-field-container">
-    <mat-form-field appearance="outline">
-      <mat-label>Todo hinzufügen</mat-label>
-      <input
-        matInput
-        name="todo"
-        [(ngModel)]="newTodo"
-        (keyup.enter)="addTodo()"
-      />
-    </mat-form-field>
-
-    <button mat-min-fab matSuffix class="todo-button" (click)="addTodo()">
-      <mat-icon
-        aria-hidden="false"
-        aria-label="Example home icon"
-        fontIcon="add"
-      ></mat-icon>
-    </button>
-  </div>
-
-  <mat-list role="list">
-    <mat-list-item *ngFor="let todo of todos; let i = index" role="listitem">
-      <mat-checkbox
-        [checked]="todo.completed"
-        (change)="toggleTodoCompletion(todo)"
-      >
-        {{ todo.text }}
-      </mat-checkbox>
-      <button
-        mat-icon-button
-        class="todo-button"
-        (click)="removeTodo(i)"
-        aria-label="Delete"
-      >
-        <mat-icon>delete</mat-icon>
-      </button>
-    </mat-list-item>
-  </mat-list>
-
-  <div *ngIf="todos.length === 0">Keine Todos vorhanden!</div>
-</div>
+<mat-toolbar color="secondary">
+  {{ title }}
+</mat-toolbar>
+<app-blog-list></app-blog-list>

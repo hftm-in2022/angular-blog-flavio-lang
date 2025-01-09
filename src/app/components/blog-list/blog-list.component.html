@@ -1,0 +1,5 @@
+<div class="container" *ngIf="blogEntries$ | async as blogEntries">
+  @for (entry of blogEntries.data; track $index) {
+    <app-blog-card [entry]="entry"></app-blog-card>
+  }
+</div>
