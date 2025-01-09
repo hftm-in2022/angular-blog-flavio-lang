@@ -1,5 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, WritableSignal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  WritableSignal,
+} from '@angular/core';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Router } from '@angular/router';
@@ -19,6 +23,7 @@ import { BlogCardComponent } from '../blog-card/blog-card.component';
   ],
   templateUrl: './blog-list.component.html',
   styleUrl: './blog-list.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BlogListComponent {
   blogState: WritableSignal<BlogState>;
