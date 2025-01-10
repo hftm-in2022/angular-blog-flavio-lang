@@ -74,3 +74,5 @@ The Blog Overview and Blog Card implement the Smart and Dumb Components pattern.
 ## Deployment to Azure Static Web Apps
 
 Deployment is easy with the provided GitHub actions. The app is automatically deployed to Azure Static Web Apps every time something gets pushed to the `main` branch of the Project.
+
+Deployment Link Here
