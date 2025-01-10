@@ -82,7 +82,9 @@ export class BlogService {
         });
 
         return this.apiClient
-          .post<unknown | null>(environment.apiUrl, blog, { headers })
+          .post<
+            unknown | null
+          >(environment.apiUrl + '/entries', blog, { headers })
           .pipe(
             switchMap((res) => {
               if (res === null) {

@@ -1,0 +1,39 @@
+.container {
+  min-width: 50dvw;
+  max-width: 64rem;
+  display: relative;
+  flex-direction: column;
+  gap: 4px;
+
+  mat-card {
+    width: 100%;
+
+    mat-card-actions {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
+
+  mat-spinner {
+    position: absolute; /* Position the spinner absolutely within the container */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(
+      -50%,
+      -50%
+    ); /* Adjust for the spinner's own dimensions */
+    z-index: 10; /* Ensure it is above other elements */
+  }
+
+  .blurred {
+    filter: blur(4px);
+    pointer-events: none;
+  }
+}
