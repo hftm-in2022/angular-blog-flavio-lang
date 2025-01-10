@@ -23,7 +23,7 @@ export const BlogOverviewPageSchema = z.object({
   maxPageSize: z.number(),
   pageIndex: z.number(),
   pageSize: z.number(),
-  totalCound: z.number(),
+  totalCount: z.number(),
 });
 
 // Schema for a single blog entry on the detail page.
