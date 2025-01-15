@@ -15,7 +15,6 @@ import { BlogState } from 'src/app/state/blog.state';
 
 @Component({
   selector: 'app-blog-detail',
-  standalone: true,
   imports: [
     MatCardModule,
     DatePipe,
