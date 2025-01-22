@@ -14,7 +14,6 @@ import { BlogCardComponent } from '../../components/blog-card/blog-card.componen
 
 @Component({
   selector: 'app-blog-list',
-  standalone: true,
   imports: [
     BlogCardComponent,
     CommonModule,
