@@ -8,7 +8,6 @@ import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
   selector: 'app-header',
-  standalone: true,
   imports: [MatToolbarModule, MatIconModule, MatButtonModule, MatMenuModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
