@@ -6,7 +6,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { BlogOverviewEntry } from 'src/app/core/schemas/blogs.schema';
 @Component({
   selector: 'app-blog-card',
-  standalone: true,
   imports: [MatCardModule, MatButtonModule, DatePipe, MatIconModule],
   templateUrl: './blog-card.component.html',
   styleUrl: './blog-card.component.scss',
