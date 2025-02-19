@@ -5,7 +5,6 @@ import { HeaderComponent } from './components/header/header.component';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
   imports: [MatToolbarModule, RouterOutlet, HeaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
