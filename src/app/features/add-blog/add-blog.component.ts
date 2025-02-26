@@ -16,7 +16,6 @@ import { BlogService } from 'src/app/core/services/blog.service';
 
 @Component({
   selector: 'app-add-blog',
-  standalone: true,
   imports: [
     ReactiveFormsModule,
     MatCardModule,
